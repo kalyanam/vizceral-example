@@ -220,12 +220,14 @@ function aggregateGraphForDc (dc, jitter) {
     appNodes.push(node);
   });
   const connections = Object.values(totals);
-  const sharedUsed = [...new Set(connections.map(c => c.target).filter(t => SHARED_SERVICES.includes(t)))];
+  const inbound = {};
+  connections.forEach((c) => { inbound[c.target] = (inbound[c.target] || 0) + volumeOf(c.metrics); });
+  const sharedUsed = SHARED_SERVICES.filter(name => inbound[name]);
   const nodes = [
     { name: 'INTERNET' },
-    serviceNode('f5-ltm', dc, 0, rand),
+    serviceNode('f5-ltm', dc, inbound['f5-ltm'] || 0, rand),
     ...appNodes,
-    ...sharedUsed.map(name => serviceNode(name, dc, 0, rand))
+    ...sharedUsed.map(name => serviceNode(name, dc, inbound[name], rand))
   ];
   return { nodes, connections };
 }
