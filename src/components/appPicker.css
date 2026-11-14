@@ -1,0 +1,31 @@
+.app-picker {
+  display: inline-block;
+  position: relative;
+  margin-right: 15px;
+}
+.app-picker-input.form-control {
+  width: 240px;
+  height: 24px;
+  padding: 2px 8px 2px 26px;
+  font-size: 14px;
+  border-radius: 2px;
+  background-color: #2d2d2d;
+  border: 1px solid #666;
+  color: #e5e5e5;
+}
+.app-picker-input.form-control:focus {
+  background-color: #2d2d2d;
+  color: #fff;
+  box-shadow: none;
+  border-color: #aaa;
+}
+.app-picker-input.is-invalid {
+  border-color: rgb(184, 36, 36);
+}
+.app-picker-icon {
+  position: absolute;
+  left: 8px;
+  top: 3px;
+  color: #aaa;
+  font-size: 13px;
+}

@@ -11,7 +11,9 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:onprem": "vite --mode onprem",
     "build": "vite build",
+    "build:onprem": "vite build --mode onprem",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

@@ -27,12 +27,35 @@ Stack: React 19, Vite, three.js, Bootstrap 5 / react-bootstrap 2, ESLint flat co
 | Command            | Description                                     |
 | ------------------ | ----------------------------------------------- |
 | `npm run dev`      | Dev server with hot reload on port 8080         |
+| `npm run dev:onprem` | Dev server in on-prem topology mode           |
 | `npm run build`    | Production build into `dist/`                   |
+| `npm run build:onprem` | Production build defaulting to on-prem mode |
 | `npm run preview`  | Serve the production build on port 8080         |
 | `npm run lint`     | Lint with ESLint                                |
 | `npm audit`        | Check dependencies for known vulnerabilities    |
 
 Set `HIDE_DATA=1` at build time to hide the data values in the focused node view.
+
+## On-prem topology mode
+
+The original Netflix sample is the default. On-prem mode models 2 regions (EAST: `east-dc1`, `east-dc2`;
+WEST: `west-dc3`, `west-dc4`) and 20 made-up application FQDNs. Turn it on with any of:
+
+- `npm run dev:onprem` / `npm run build:onprem` (sets `VITE_TOPOLOGY=onprem` from `.env.onprem`)
+- `?topology=onprem` on any URL, e.g. `http://localhost:8080/?topology=onprem`
+
+Type or pick an FQDN in the app box to see that app's traffic; leave it empty for the aggregate of all apps.
+The selection is kept in the URL (`?app=payments.acme.com`). Drilling into a DC shows the app's own service
+flow (aggregate mode shows every app feeding the shared platform services instead). Apps use one of three patterns:
+
+| Pattern           | Traffic                                                                      |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `4dc`             | Active in all 4 DCs                                                          |
+| `2region-active`  | Active in both DCs of each region; failover is per region                    |
+| `2region-standby` | Active in one DC per region; the other DC is a warm standby (health checks)  |
+
+Data is generated deterministically in [`src/onprem/topology.js`](src/onprem/topology.js); edit `APP_DEFS`
+there to change the apps.
 
 ## Docker
 
