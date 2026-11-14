@@ -35,8 +35,6 @@
 }
 
 .details-panel-close {
-  font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
-  content: "\e114";
   font-size: 12px;
   position:absolute;
   top: 6px;

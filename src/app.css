@@ -1,3 +1,91 @@
+/* Bootstrap 5 adjustments to keep the original Bootstrap 3 look
+-------------------------------------------------- */
+:root {
+  --bs-body-font-size: 14px;
+  --bs-body-line-height: 1.428571429;
+  --bs-link-color-rgb: 51, 122, 183;
+  --bs-link-hover-color-rgb: 35, 82, 124;
+}
+a {
+  text-decoration: none;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #777;
+  border-radius: 10px;
+}
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-default:disabled {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  opacity: .65;
+}
+.btn-xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+}
+.bi::before {
+  vertical-align: -0.125em;
+}
+.navbar {
+  height: 51px;
+  padding: 0;
+  border-bottom: 1px solid #080808;
+}
+.navbar-brand {
+  height: 50px;
+  padding: 15px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 20px;
+}
+.navbar-brand:hover {
+  text-decoration: none;
+}
+.navbar-text {
+  margin: 15px 0;
+  padding: 0;
+  line-height: 20px;
+}
+
 html {
     min-height: 100%;
     height:100%;
@@ -41,6 +129,7 @@ body > .container {
     left: 0;
     right: 0;
     width: 100%;
+    max-width: none;
 }
 
 .container .text-muted {
@@ -64,8 +153,7 @@ body > .container {
 
 /* Feedback
 -------------------------------------------------- */
-.glyphicon-comment {
-  top: 3px;
+#feedback .bi {
   padding-right: 5px;
 }
 
@@ -307,7 +395,7 @@ a.accordion-toggle {
   text-decoration: inherit;
 }
 
-#links-popover .popover-content {
+#links-popover .popover-body {
   color: rgb(172, 182, 187);
   text-align: right;
   width: 100px;
@@ -329,7 +417,7 @@ a.accordion-toggle {
   font-family: 'Source Sans Pro', sans-serif !important;
 }
 
-.popover-content {
+.popover-body {
   padding: 6px 8px !important;
 }
 
@@ -366,7 +454,39 @@ a.accordion-toggle {
   background-color: var(--colorNormal);
 }
 
-.alert-dismissable .close {
-  top: -1px;
-  right: -5px;
+.alert-dismissible {
+  padding-right: 35px;
+}
+.alert-dismissible .btn-close {
+  padding: 8px 10px;
+  font-size: 10px;
+}
+
+/* Bootstrap 3 panel look for the details accordions
+-------------------------------------------------- */
+.panel-heading {
+  padding: 10px 15px;
+}
+.panel-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+.panel-title > a, .panel-title > a:hover, .panel-title > a:focus {
+  color: inherit;
+}
+.panel-default > .panel-heading .badge {
+  color: #f5f5f5;
+  background-color: #333;
+}
+.details-panel-close .bi,
+.update-status .bi,
+.accordion-toggle .bi,
+.zoom-icon {
+  -webkit-text-stroke: 1px;
+}
+.ReactVirtualized__Table__headerColumn {
+  white-space: nowrap;
 }
