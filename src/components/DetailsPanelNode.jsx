@@ -6,7 +6,7 @@ import SubNodeList from './SubNodeList';
 import './detailsPanel.css';
 
 export default function DetailsPanelNode ({
-  node, region = '', zoomCallback, closeCallback
+  node, region = '', zoomCallback, closeCallback, openAppCallback
 }) {
   const isZoomOut = node.graphRenderer === 'focused';
   const showConnections = !node.isEntryNode();
@@ -21,6 +21,11 @@ export default function DetailsPanelNode ({
           <span className="bi bi-x-lg" aria-hidden="true"></span>
         </div>
       </div>
+      {openAppCallback && node.metadata && node.metadata.fqdn && (
+        <button type="button" className="btn btn-default btn-xs open-app-flow" onClick={() => openAppCallback(node.metadata.fqdn)}>
+          View service flow for {node.metadata.fqdn}
+        </button>
+      )}
       <Notices notices={node.notices || []} />
       {showConnections && node.nodes && (
         <DetailsSubpanel key={`subnodes-${node.getName()}`} title="Sub Nodes" expanded badge={node.nodes.length}>

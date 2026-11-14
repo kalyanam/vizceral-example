@@ -1,0 +1,32 @@
+.region-legend {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.region-legend-summary {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #aaa;
+  font-size: 14px;
+}
+.region-legend-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(186, 213, 237);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+.region-legend-label.left { left: 30px; }
+.region-legend-label.right { right: 30px; text-align: right; }
+.region-legend-dcs {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #999;
+}

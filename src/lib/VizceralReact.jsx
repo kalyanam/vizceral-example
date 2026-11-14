@@ -113,6 +113,11 @@ export default function Vizceral (props) {
     if (!vizceral || !prev) { return; }
 
     if (!isEqual(next.styles, prev.styles)) { applyStyles(vizceral, next.styles); }
+    // Load new data before changing the view so a view into the new data can resolve.
+    next.traffic.updated = next.traffic.updated || Date.now();
+    if (!prev.traffic.nodes || next.traffic.updated > (prev.traffic.updated || 0)) {
+      vizceral.updateData(next.traffic);
+    }
     if (!isEqual(next.view, prev.view) || !isEqual(next.objectToHighlight, prev.objectToHighlight)) {
       vizceral.setView(next.view, next.objectToHighlight);
     }
@@ -124,11 +129,6 @@ export default function Vizceral (props) {
     if (!isEqual(next.definitions, prev.definitions)) { vizceral.updateDefinitions(next.definitions); }
     if (next.match !== prev.match) { vizceral.findNodes(next.match); }
 
-    // If the data does not have an updated field, assume it was modified now.
-    next.traffic.updated = next.traffic.updated || Date.now();
-    if (!prev.traffic.nodes || next.traffic.updated > (prev.traffic.updated || 0)) {
-      vizceral.updateData(next.traffic);
-    }
   });
 
   return (
