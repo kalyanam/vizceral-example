@@ -10,11 +10,11 @@ export default defineConfig({
     format: 'es'
   },
   server: {
-    host: '0.0.0.0',
+    host: true,
     port: 8080
   },
   preview: {
-    host: '0.0.0.0',
+    host: true,
     port: 8080
   },
   build: {
