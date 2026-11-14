@@ -778,7 +778,7 @@ class Vizceral extends EventEmitter {
   }
 
   render (time) {
-    tweenGroup.update();
+    tweenGroup.update(undefined, false);
 
     // Check size
     if ((this.renderer.domElement.offsetWidth !== 0 && this.width !== this.renderer.domElement.offsetWidth)
