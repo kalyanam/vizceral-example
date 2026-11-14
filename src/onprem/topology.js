@@ -108,7 +108,10 @@ function buildApp (fqdn, mode) {
   const services = sample(rand, SERVICE_POOL, 3 + Math.floor(rand() * 5)).map(s => `${prefix}-${s}`);
   const shared = ['sso-auth', ...sample(rand, SHARED_SERVICES.slice(1), 2 + Math.floor(rand() * 3))];
   const edges = [];
-  const add = (source, target, fraction) => edges.push({ source, target, fraction });
+  const add = (source, target, fraction) => {
+    const existing = edges.find(e => e.source === source && e.target === target);
+    if (existing) { existing.fraction += fraction; } else { edges.push({ source, target, fraction }); }
+  };
 
   add('INTERNET', names.lb, 1);
   const hasWeb = !prefix.startsWith('api') && rand() < 0.85;
