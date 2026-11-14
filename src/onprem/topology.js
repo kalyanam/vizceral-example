@@ -144,7 +144,8 @@ function buildApp (fqdn, mode) {
 }
 
 export const APPS = APP_DEFS.map(([fqdn, mode]) => buildApp(fqdn, mode));
-export const APPS_BY_FQDN = Object.fromEntries(APPS.map(app => [app.fqdn, app]));
+// Null prototype so lookups like APPS_BY_FQDN.toString don't resolve to inherited members.
+export const APPS_BY_FQDN = Object.assign(Object.create(null), Object.fromEntries(APPS.map(app => [app.fqdn, app])));
 
 function metrics (volume, errorRate, jitter) {
   const total = volume * jitter();
